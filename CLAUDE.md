@@ -13,3 +13,5 @@
 - Always use the latest version of pnpm
 - Always use the latest version of bun
 - Always run servers in subprocess agents that you can manage, monitor, and kill as necessary
+- Stage and commit changes with useful and concise descriptions at useful intervals
+- NEVER store secrets in the project itself

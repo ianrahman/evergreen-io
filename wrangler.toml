@@ -1,0 +1,56 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "evergreen-io"
+compatibility_date = "2025-07-06"
+compatibility_flags = ["nodejs_compat"]
+
+[pages]
+# For Cloudflare Pages deployment
+output_dir = "dist"
+build_output_dir = "dist"
+
+[build]
+command = "bun run build"
+
+[env.production]
+name = "evergreen-io"
+
+[env.staging]
+name = "evergreen-io-staging"
+
+[env.development]
+name = "evergreen-io-dev"
+
+# Assets configuration for static files
+[assets]
+# Configure asset handling
+directory = "dist/assets"
+# Serve assets with long-term caching
+binding = "ASSETS"
+
+# Custom domains (uncomment and configure when ready)
+# [route]
+# pattern = "evergreen-labs.com/*"
+# zone_name = "evergreen-labs.com"
+
+# Security headers and settings
+[durable_objects]
+# Add any Durable Objects here if needed in the future
+
+# KV namespaces (if needed for caching or data storage)
+# [[kv_namespaces]]
+# binding = "CACHE"
+# id = "your-kv-namespace-id"
+# preview_id = "your-preview-kv-namespace-id"
+
+# R2 buckets (if needed for file storage)
+# [[r2_buckets]]
+# binding = "FILES"
+# bucket_name = "evergreen-files"
+
+# Analytics and observability
+[observability]
+enabled = true
+
+# Limits and performance
+[limits]
+cpu_ms = 50

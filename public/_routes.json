@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "description": "Routing configuration for Evergreen Labs on Cloudflare Pages",
+  "include": [
+    "/*"
+  ],
+  "exclude": [
+    "/assets/*",
+    "/favicon.ico",
+    "/robots.txt",
+    "/sitemap.xml",
+    "/*.png",
+    "/*.jpg",
+    "/*.jpeg",
+    "/*.gif",
+    "/*.svg",
+    "/*.webp",
+    "/*.ico",
+    "/*.css",
+    "/*.js",
+    "/*.json",
+    "/*.woff",
+    "/*.woff2",
+    "/*.ttf",
+    "/*.eot"
+  ]
+}
