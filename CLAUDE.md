@@ -1,0 +1,14 @@
+## Project Details
+- Use Test Driven Development
+- Use Clean Code and SOLID principles
+- This project uses Bun to manage dependencies
+- This project uses Svelte with Typescript
+- Always keep dependencies up to date
+- Always use the latest version of Svelte
+- Always use the latest version of Typescript
+- Always use the latest version of Bun
+- Always use the latest version of Node.js
+- Always use the latest version of npm
+- Always use the latest version of yarn
+- Always use the latest version of pnpm
+- Always use the latest version of bun
