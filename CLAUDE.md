@@ -12,3 +12,4 @@
 - Always use the latest version of yarn
 - Always use the latest version of pnpm
 - Always use the latest version of bun
+- Always run servers in subprocess agents that you can manage, monitor, and kill as necessary
