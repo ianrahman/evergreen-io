@@ -1,11 +1,5 @@
 // Test setup file for Vitest
-import '@testing-library/jest-dom';
-import type { TestingLibraryMatchers } from '@testing-library/jest-dom/matchers';
+import { cleanup } from '@testing-library/svelte';
+import { afterEach } from 'vitest';
 
-declare global {
-  namespace Vi {
-    interface JestAssertion<T = any>
-      extends jest.Matchers<void, T>,
-        TestingLibraryMatchers<T, void> {}
-  }
-}
+afterEach(() => cleanup());

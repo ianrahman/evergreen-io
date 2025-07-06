@@ -1,53 +1,31 @@
 <script lang="ts">
-  let count = 0;
-
-  function increment() {
-    count += 1;
-  }
+  import Header from './lib/Header.svelte';
+  import HeroSection from './lib/HeroSection.svelte';
+  import ScrollPrompt from './lib/ScrollPrompt.svelte';
+  import ServicesSection from './lib/ServicesSection.svelte';
+  import AboutSection from './lib/AboutSection.svelte';
+  import CTASection from './lib/CTASection.svelte';
+  import ContactSection from './lib/ContactSection.svelte';
 </script>
 
+<Header />
 <main>
-  <h1>Welcome to Evergreen.io</h1>
-  <button on:click={increment}>
-    Count is {count}
-  </button>
-  <p>Edit <code>src/App.svelte</code> to get started.</p>
+  <HeroSection />
+  <ScrollPrompt />
+  <ServicesSection />
+  <AboutSection />
+  <CTASection />
+  <ContactSection />
 </main>
 
 <style>
+  :global(html) {
+    scroll-behavior: smooth;
+  }
+  
   main {
-    text-align: center;
-    padding: 1em;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  h1 {
-    color: #ff3e00;
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-  }
-
-  button {
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-    background-color: #ff3e00;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-
-  button:hover {
-    background-color: #ff5a00;
-  }
-
-  code {
-    background-color: #f4f4f4;
-    padding: 0.2rem 0.4rem;
-    border-radius: 3px;
-    font-family: 'Courier New', monospace;
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
   }
 </style>
