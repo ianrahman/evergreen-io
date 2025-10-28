@@ -15,15 +15,16 @@
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:report": "playwright show-report",
     "wrangler": "wrangler",
-    "deploy": "bun run build && wrangler pages deploy dist",
-    "deploy:staging": "bun run build && wrangler pages deploy dist --env staging",
-    "deploy:prod": "bun run build && wrangler pages deploy dist --env production",
-    "cf:dev": "wrangler pages dev dist --local",
-    "cf:tunnel": "wrangler pages dev dist --local --port 8788",
-    "cf:tail": "wrangler pages tail",
-    "cf:publish": "wrangler pages publish dist"
+    "deploy": "bun run build && wrangler deploy",
+    "deploy:staging": "bun run build && wrangler deploy --env staging",
+    "deploy:prod": "bun run build && wrangler deploy --env production",
+    "cf:dev": "wrangler dev",
+    "cf:tunnel": "wrangler dev --remote --port 8788",
+    "cf:tail": "wrangler tail",
+    "cf:publish": "wrangler deploy"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20251014.0",
     "@playwright/test": "^1.53.2",
     "@sveltejs/adapter-auto": "^6.0.1",
     "@sveltejs/vite-plugin-svelte": "^5.1.0",
@@ -37,7 +38,7 @@
     "tslib": "^2.8.1",
     "vite": "^7.0.2",
     "vitest": "^3.2.4",
-    "wrangler": "^4.23.0"
+    "wrangler": "^4.45.1"
   },
   "peerDependencies": {
     "typescript": "^5.8.3"
