@@ -1,11 +1,11 @@
 #:schema node_modules/wrangler/config-schema.json
 name = "evergreen-io"
-main = "src/worker.ts"
+main = "dist/_worker.js"
 compatibility_date = "2025-07-06"
 compatibility_flags = ["nodejs_compat"]
 
 [build]
-command = "bun run build"
+command = "bun run build && bun build src/worker.ts --outfile=dist/_worker.js --target=browser"
 
 [assets]
 directory = "dist"
