@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { inView } from './actions/inView';
+  import { inView } from "./actions/inView";
 
   type ContactForm = {
     name: string;
@@ -11,12 +11,12 @@
   };
 
   const createInitialForm = (): ContactForm => ({
-    name: '',
-    email: '',
-    company: '',
-    projectType: '',
-    timeline: '',
-    message: '',
+    name: "",
+    email: "",
+    company: "",
+    projectType: "",
+    timeline: "",
+    message: "",
   });
 
   let form = $state<ContactForm>(createInitialForm());
@@ -41,23 +41,24 @@
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!form.name.trim()) {
-      issues.name = 'Please add your name.';
+      issues.name = "Please add your name.";
     }
 
     if (!emailPattern.test(form.email.trim())) {
-      issues.email = 'Enter a valid email address.';
+      issues.email = "Enter a valid email address.";
     }
 
     if (!form.projectType) {
-      issues.projectType = 'Select the engagement type.';
+      issues.projectType = "Select the engagement type.";
     }
 
     if (!form.timeline) {
-      issues.timeline = 'Let us know your timeline.';
+      issues.timeline = "Let us know your timeline.";
     }
 
     if (form.message.trim().length < 20) {
-      issues.message = 'Share at least a couple of sentences about the project.';
+      issues.message =
+        "Share at least a couple of sentences about the project.";
     }
 
     return issues;
@@ -97,8 +98,8 @@
       <p class="eyebrow">Contact</p>
       <h2 class="title">Tell us about your next release</h2>
       <p class="summary">
-        We respond to every inquiry within two business days. Share what you are building and we’ll outline
-        what the first sprint could look like.
+        We respond to every inquiry within two business days. Share what you are
+        building and we’ll outline what the first sprint could look like.
       </p>
     </div>
 
@@ -112,13 +113,15 @@
             type="text"
             placeholder="Your name"
             value={form.name}
-            oninput={(event) => updateField('name', event.currentTarget.value)}
-            aria-invalid={errors.name ? 'true' : 'false'}
-            aria-describedby={errors.name ? 'contact-name-error' : undefined}
+            oninput={(event) => updateField("name", event.currentTarget.value)}
+            aria-invalid={errors.name ? "true" : "false"}
+            aria-describedby={errors.name ? "contact-name-error" : undefined}
             autocomplete="name"
           />
           {#if errors.name}
-            <p class="field-error" id="contact-name-error" role="alert">{errors.name}</p>
+            <p class="field-error" id="contact-name-error" role="alert">
+              {errors.name}
+            </p>
           {/if}
         </div>
 
@@ -130,13 +133,15 @@
             type="email"
             placeholder="you@company.com"
             value={form.email}
-            oninput={(event) => updateField('email', event.currentTarget.value)}
-            aria-invalid={errors.email ? 'true' : 'false'}
-            aria-describedby={errors.email ? 'contact-email-error' : undefined}
+            oninput={(event) => updateField("email", event.currentTarget.value)}
+            aria-invalid={errors.email ? "true" : "false"}
+            aria-describedby={errors.email ? "contact-email-error" : undefined}
             autocomplete="email"
           />
           {#if errors.email}
-            <p class="field-error" id="contact-email-error" role="alert">{errors.email}</p>
+            <p class="field-error" id="contact-email-error" role="alert">
+              {errors.email}
+            </p>
           {/if}
         </div>
 
@@ -148,7 +153,8 @@
             type="text"
             placeholder="Optional"
             value={form.company}
-            oninput={(event) => updateField('company', event.currentTarget.value)}
+            oninput={(event) =>
+              updateField("company", event.currentTarget.value)}
             autocomplete="organization"
           />
         </div>
@@ -159,18 +165,25 @@
             id="contact-project-type"
             name="projectType"
             value={form.projectType}
-            onchange={(event) => updateField('projectType', event.currentTarget.value)}
-            aria-invalid={errors.projectType ? 'true' : 'false'}
-            aria-describedby={errors.projectType ? 'contact-project-type-error' : undefined}
+            onchange={(event) =>
+              updateField("projectType", event.currentTarget.value)}
+            aria-invalid={errors.projectType ? "true" : "false"}
+            aria-describedby={errors.projectType
+              ? "contact-project-type-error"
+              : undefined}
           >
             <option value="">Select an option</option>
             <option value="new-product">New product build</option>
             <option value="feature-team">Feature team augmentation</option>
             <option value="design-system">Design system refresh</option>
-            <option value="performance">Performance &amp; accessibility uplift</option>
+            <option value="performance"
+              >Performance &amp; accessibility uplift</option
+            >
           </select>
           {#if errors.projectType}
-            <p class="field-error" id="contact-project-type-error" role="alert">{errors.projectType}</p>
+            <p class="field-error" id="contact-project-type-error" role="alert">
+              {errors.projectType}
+            </p>
           {/if}
         </div>
 
@@ -180,9 +193,12 @@
             id="contact-timeline"
             name="timeline"
             value={form.timeline}
-            onchange={(event) => updateField('timeline', event.currentTarget.value)}
-            aria-invalid={errors.timeline ? 'true' : 'false'}
-            aria-describedby={errors.timeline ? 'contact-timeline-error' : undefined}
+            onchange={(event) =>
+              updateField("timeline", event.currentTarget.value)}
+            aria-invalid={errors.timeline ? "true" : "false"}
+            aria-describedby={errors.timeline
+              ? "contact-timeline-error"
+              : undefined}
           >
             <option value="">When do you want to start?</option>
             <option value="2-weeks">Within 2 weeks</option>
@@ -191,7 +207,9 @@
             <option value="unsure">Exploring options</option>
           </select>
           {#if errors.timeline}
-            <p class="field-error" id="contact-timeline-error" role="alert">{errors.timeline}</p>
+            <p class="field-error" id="contact-timeline-error" role="alert">
+              {errors.timeline}
+            </p>
           {/if}
         </div>
 
@@ -203,12 +221,17 @@
             rows="5"
             placeholder="Share goals, target users, tech stack, and any deadlines."
             value={form.message}
-            oninput={(event) => updateField('message', event.currentTarget.value)}
-            aria-invalid={errors.message ? 'true' : 'false'}
-            aria-describedby={errors.message ? 'contact-message-error' : undefined}
+            oninput={(event) =>
+              updateField("message", event.currentTarget.value)}
+            aria-invalid={errors.message ? "true" : "false"}
+            aria-describedby={errors.message
+              ? "contact-message-error"
+              : undefined}
           ></textarea>
           {#if errors.message}
-            <p class="field-error" id="contact-message-error" role="alert">{errors.message}</p>
+            <p class="field-error" id="contact-message-error" role="alert">
+              {errors.message}
+            </p>
           {/if}
         </div>
 
@@ -222,7 +245,7 @@
 
         {#if submitted}
           <p class="success" role="status">
-            Thank you! We’ll review and respond within two business days.
+            Thank you! We’ll review and respond within five business days.
           </p>
         {/if}
       </form>
@@ -239,12 +262,18 @@
 
         <div class="meta-block">
           <span class="meta-label">Email</span>
-          <a class="meta-link" href="mailto:hello@evergreenlabs.io">hello@evergreenlabs.io</a>
+          <a class="meta-link" href="mailto:hello@evergreenlabs.io"
+            >hello@evergreenlabs.io</a
+          >
         </div>
 
         <div class="meta-block">
           <span class="meta-label">Availability</span>
-          <p class="meta-copy">New engagements opening in {new Date().toLocaleString(undefined, { month: 'long' })}</p>
+          <p class="meta-copy">
+            New engagements opening in {new Date().toLocaleString(undefined, {
+              year: "numeric",
+            })}
+          </p>
         </div>
 
         <div class="social-links">
@@ -255,7 +284,13 @@
             target="_blank"
             rel="noopener"
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path
                 d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
                 fill="currentColor"
@@ -280,8 +315,16 @@
   .contact-overlay {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 20% 20%, rgba(126, 196, 142, 0.28), transparent 50%),
-      radial-gradient(circle at 80% 80%, rgba(51, 125, 76, 0.25), transparent 50%);
+    background: radial-gradient(
+        circle at 20% 20%,
+        rgba(126, 196, 142, 0.28),
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 80% 80%,
+        rgba(51, 125, 76, 0.25),
+        transparent 50%
+      );
     opacity: 0.8;
     pointer-events: none;
   }
@@ -300,7 +343,9 @@
     margin: 0 auto 3.5rem;
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition:
+      opacity 0.4s ease,
+      transform 0.4s ease;
   }
 
   .intro:global(.is-visible) {
@@ -361,7 +406,9 @@
     gap: 1.5rem 1.75rem;
     opacity: 0;
     transform: translateY(35px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition:
+      opacity 0.4s ease,
+      transform 0.4s ease;
   }
 
   .contact-form:global(.is-visible) {
@@ -395,7 +442,9 @@
     border: 1px solid rgba(198, 240, 206, 0.2);
     background: rgba(7, 16, 11, 0.8);
     color: white;
-    transition: border 0.2s ease, box-shadow 0.2s ease;
+    transition:
+      border 0.2s ease,
+      box-shadow 0.2s ease;
   }
 
   input::placeholder,
@@ -430,7 +479,10 @@
     border: none;
     cursor: pointer;
     box-shadow: 0 16px 28px rgba(63, 125, 74, 0.35);
-    transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease,
+      opacity 0.25s ease;
   }
 
   .submit-button:hover {
@@ -464,7 +516,9 @@
     gap: 1.75rem;
     opacity: 0;
     transform: translateY(35px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition:
+      opacity 0.4s ease,
+      transform 0.4s ease;
   }
 
   .contact-aside:global(.is-visible) {
@@ -503,7 +557,7 @@
   }
 
   .info-card li::before {
-    content: '•';
+    content: "•";
     color: rgba(126, 196, 142, 0.9);
   }
 
@@ -556,7 +610,10 @@
     background: rgba(12, 26, 18, 0.9);
     border: 1px solid rgba(126, 196, 142, 0.3);
     color: rgba(198, 240, 206, 0.85);
-    transition: transform 0.2s ease, border 0.2s ease, background 0.2s ease;
+    transition:
+      transform 0.2s ease,
+      border 0.2s ease,
+      background 0.2s ease;
   }
 
   .social-link:hover {

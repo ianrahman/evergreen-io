@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { inView } from './actions/inView';
+  import { inView } from "./actions/inView";
 </script>
 
 <section class="services" id="services">
@@ -8,8 +8,8 @@
       <p class="eyebrow">What We Do</p>
       <h2 class="title">Sustainable products from idea to launch</h2>
       <p class="summary">
-        We combine thoughtful strategy, elegant interfaces, and dependable engineering so your teams can scale
-        without rebuilding every quarter.
+        We combine thoughtful strategy, elegant interfaces, and dependable
+        engineering so your teams can scale without rebuilding every quarter.
       </p>
     </div>
 
@@ -21,7 +21,10 @@
           </svg>
         </div>
         <h3>Product Strategy</h3>
-        <p>Workshop your roadmap, define KPIs, and ship a validated MVP in weeks, not months.</p>
+        <p>
+          Workshop your roadmap, define KPIs, and ship a validated MVP in weeks,
+          not months.
+        </p>
       </article>
 
       <article class="service-card" use:inView>
@@ -31,7 +34,10 @@
           </svg>
         </div>
         <h3>Interface &amp; Experience</h3>
-        <p>Accessible Svelte interfaces, design systems, and motion that keeps teams on-brand.</p>
+        <p>
+          Accessible Svelte interfaces, design systems, and motion that keeps
+          teams on-brand.
+        </p>
       </article>
 
       <article class="service-card" use:inView>
@@ -41,7 +47,10 @@
           </svg>
         </div>
         <h3>Full-Stack Delivery</h3>
-        <p>TypeScript-first web and mobile apps deployed on Cloudflare, ensuring resilient performance.</p>
+        <p>
+          TypeScript-first web and fully native mobile apps, ensuring resilient
+          performance.
+        </p>
       </article>
     </div>
   </div>
@@ -100,7 +109,9 @@
     padding: 2.5rem 2rem;
     box-shadow: 0 20px 40px rgba(31, 51, 36, 0.08);
     border: 1px solid rgba(63, 125, 74, 0.08);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
     opacity: 0;
     transform: translateY(30px);
   }
@@ -132,7 +143,11 @@
     width: 52px;
     height: 52px;
     border-radius: 14px;
-    background: linear-gradient(135deg, rgba(63, 125, 74, 0.12), rgba(31, 51, 36, 0.08));
+    background: linear-gradient(
+      135deg,
+      rgba(63, 125, 74, 0.12),
+      rgba(31, 51, 36, 0.08)
+    );
     display: flex;
     align-items: center;
     justify-content: center;

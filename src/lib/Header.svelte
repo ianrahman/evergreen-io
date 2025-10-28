@@ -65,7 +65,7 @@
     >
       <a href="#welcome" onclick={closeMenu}>Welcome</a>
       <a href="#services" onclick={closeMenu}>Services</a>
-      <a href="#work" onclick={closeMenu}>Work</a>
+      <!-- <a href="#work" onclick={closeMenu}>Work</a> -->
       <a href="#resources" onclick={closeMenu}>Resources</a>
       <a href="#contact" onclick={closeMenu}>Contact</a>
     </nav>
@@ -101,12 +101,12 @@
     background: rgba(26, 26, 26, 0.1);
     backdrop-filter: blur(10px);
   }
-  
+
   .header.scrolled {
     background: rgba(26, 26, 26, 0.95);
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
   }
-  
+
   .nav-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -115,7 +115,7 @@
     justify-content: space-between;
     align-items: center;
   }
-  
+
   .menu-toggle {
     display: none;
     background: none;
@@ -182,20 +182,20 @@
     object-fit: contain;
     filter: drop-shadow(0 4px 8px rgba(28, 74, 46, 0.35));
   }
-  
+
   .company-name {
     font-size: 1.1rem;
     font-weight: 600;
     letter-spacing: 0.1em;
     color: white;
   }
-  
+
   .nav-menu {
     display: flex;
     align-items: center;
     gap: 1.75rem;
   }
-  
+
   .nav-menu a {
     color: white;
     text-decoration: none;
@@ -215,7 +215,7 @@
     outline: 2px solid rgba(126, 196, 142, 0.8);
     outline-offset: 3px;
   }
-  
+
   @media (max-width: 768px) {
     .nav-container {
       padding: 1rem;
