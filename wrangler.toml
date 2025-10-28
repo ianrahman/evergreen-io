@@ -21,9 +21,9 @@ name = "evergreen-io-staging"
 name = "evergreen-io-dev"
 
 # Custom domains (uncomment and configure when ready)
-# [route]
-# pattern = "evergreenlabs.io/*"
-# zone_name = "evergreenlabs.io"
+[route]
+pattern = "evergreenlabs.io/*"
+zone_name = "evergreenlabs.io"
 
 # KV namespaces (if needed for caching or data storage)
 # [[kv_namespaces]]
@@ -48,5 +48,3 @@ persist = true
 invocation_logs = true
 
 # Limits and performance
-[limits]
-cpu_ms = 50
