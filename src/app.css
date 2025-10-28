@@ -1,12 +1,21 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  --color-bg: #071009;
+  --color-bg-soft: #0f1d14;
+  --color-fg: rgba(236, 246, 239, 0.92);
+  --color-fg-muted: rgba(214, 229, 218, 0.7);
+  --color-accent: #4fbd77;
+  --color-accent-dark: #1d5c35;
+  --font-body: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-heading: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --radius-lg: 20px;
+  --radius-md: 14px;
+
+  font-family: var(--font-body);
+  line-height: 1.6;
   font-weight: 400;
-
   color-scheme: dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #0a0f0a;
-
+  color: var(--color-fg);
+  background-color: var(--color-bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -27,9 +36,10 @@ html {
 body {
   margin: 0;
   min-width: 320px;
-  background-color: #0a0f0a;
-  color: rgba(255, 255, 255, 0.87);
+  background-color: var(--color-bg);
+  color: var(--color-fg);
   overflow-x: hidden;
+  font-family: var(--font-body);
 }
 
 a {
@@ -45,4 +55,11 @@ a:hover {
 #app {
   width: 100%;
   min-height: 100vh;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
 }

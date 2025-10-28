@@ -12,19 +12,26 @@
   <div class="hero-background"></div>
   <div class="hero-content" class:mounted>
     <div class="hero-logo">
-      <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M40 5L50 25L40 45L30 25L40 5Z" fill="#4F7942"/>
-        <path d="M40 45L50 65L40 75L30 65L40 45Z" fill="#3A5A32"/>
-        <rect x="38" y="65" width="4" height="10" fill="#5A4A3A"/>
-      </svg>
+      <img
+        class="hero-mark"
+        src="/assets/tree-256.png"
+        srcset="/assets/tree-256.png 1x, /assets/tree-512.png 2x"
+        alt="Evergreen Labs tree logo"
+        width="108"
+        height="108"
+      />
     </div>
-    <h1 class="hero-title">EVERGREEN LABS</h1>
-    <p class="hero-tagline">Fresh code for the long run</p>
-    <div class="scroll-indicator">
+    <h1 class="hero-title">Evergreen Labs</h1>
+    <p class="hero-tagline">Designing resilient products that grow with your business.</p>
+    <div class="hero-actions">
+      <a class="hero-button primary" href="#contact">Start a Project</a>
+      <a class="hero-button ghost" href="#work">See Our Work</a>
+    </div>
+    <a class="scroll-indicator" href="#services" aria-label="Scroll to services">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M7 10L12 15L17 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-    </div>
+    </a>
   </div>
 </section>
 
@@ -83,6 +90,13 @@
     margin-bottom: 2rem;
     animation: float 3s ease-in-out infinite;
   }
+
+  .hero-mark {
+    width: clamp(84px, 10vw, 112px);
+    height: clamp(84px, 10vw, 112px);
+    object-fit: contain;
+    filter: drop-shadow(0 14px 32px rgba(25, 64, 41, 0.4));
+  }
   
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
@@ -90,20 +104,68 @@
   }
   
   .hero-title {
-    font-size: 4rem;
+    font-size: 4.25rem;
     font-weight: 700;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.12em;
     color: white;
     margin: 0 0 1rem 0;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   }
   
   .hero-tagline {
-    font-size: 1.5rem;
-    color: rgba(255, 255, 255, 0.9);
-    margin: 0 0 4rem 0;
+    font-size: 1.35rem;
+    color: rgba(255, 255, 255, 0.92);
+    margin: 0 auto 2.5rem;
+    max-width: 520px;
     font-weight: 300;
+    letter-spacing: 0.03em;
+  }
+
+  .hero-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .hero-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.95rem 2.5rem;
+    border-radius: 999px;
+    font-weight: 600;
     letter-spacing: 0.05em;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+
+  .hero-button.primary {
+    background: linear-gradient(135deg, #5fa761, #3f7d4a);
+    color: white;
+    box-shadow: 0 10px 20px rgba(63, 125, 74, 0.35);
+  }
+
+  .hero-button.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(63, 125, 74, 0.4);
+  }
+
+  .hero-button.ghost {
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    color: white;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .hero-button.ghost:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .hero-button:focus-visible {
+    outline: 3px solid rgba(198, 240, 206, 0.9);
+    outline-offset: 3px;
   }
   
   .scroll-indicator {
@@ -113,6 +175,12 @@
     transform: translateX(-50%);
     animation: bounce 2s infinite;
     cursor: pointer;
+    display: inline-flex;
+  }
+
+  .scroll-indicator:focus-visible {
+    outline: 2px solid rgba(198, 240, 206, 0.85);
+    outline-offset: 6px;
   }
   
   @keyframes bounce {
@@ -123,17 +191,23 @@
   
   @media (max-width: 768px) {
     .hero-title {
-      font-size: 2.5rem;
-      letter-spacing: 0.1em;
+      font-size: 2.75rem;
+      letter-spacing: 0.08em;
     }
     
     .hero-tagline {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero-actions {
+      flex-direction: column;
+      gap: 1rem;
     }
     
-    .hero-logo svg {
-      width: 60px;
-      height: 60px;
+    .hero-mark {
+      width: 72px;
+      height: 72px;
     }
   }
   

@@ -7,6 +7,8 @@ node_modules/
 coverage/
 *.lcov
 .nyc_output
+test-results/
+playwright-report/
 
 # Production
 build/
@@ -31,6 +33,3 @@ yarn-error.log*
 *.swp
 *.swo
 *~
-
-# Claude
-.claude/sessions/
