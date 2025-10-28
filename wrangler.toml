@@ -29,8 +29,8 @@ binding = "ASSETS"
 
 # Custom domains (uncomment and configure when ready)
 # [route]
-# pattern = "evergreen-labs.com/*"
-# zone_name = "evergreen-labs.com"
+# pattern = "evergreenlabs.io/*"
+# zone_name = "evergreenlabs.io"
 
 # Security headers and settings
 [durable_objects]

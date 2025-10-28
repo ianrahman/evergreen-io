@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://evergreen-labs.com/sitemap.xml
+Sitemap: https://evergreenlabs.io/sitemap.xml
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1

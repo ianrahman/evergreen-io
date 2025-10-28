@@ -7,5 +7,5 @@
 # /old-url /new-url 301
 
 # Force HTTPS (handled by Cloudflare but good to be explicit)
-http://evergreen-labs.com/* https://evergreen-labs.com/:splat 301!
-http://www.evergreen-labs.com/* https://evergreen-labs.com/:splat 301!
+http://evergreenlabs.io/* https://evergreenlabs.io/:splat 301!
+http://www.evergreenlabs.io/* https://evergreenlabs.io/:splat 301!
