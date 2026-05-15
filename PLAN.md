@@ -6,7 +6,7 @@ final outcome when the work closes.
 
 ## Active Plans
 
-No active plans.
+- [2026-05-15 Site Redesign](docs/plans/active/2026-05-15-site-redesign.md)
 
 ## Completed Plans
 
