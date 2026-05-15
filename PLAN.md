@@ -6,4 +6,8 @@ final outcome when the work closes.
 
 ## Active Plans
 
-- [2026-05-15 Dependency Refresh](docs/plans/active/2026-05-15-dependency-refresh.md)
+No active plans.
+
+## Completed Plans
+
+- [2026-05-15 Dependency Refresh](docs/plans/completed/2026-05-15-dependency-refresh.md)
