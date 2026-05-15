@@ -2,7 +2,7 @@
 
 ## Status
 
-- State: Active
+- State: Completed
 - Owner: Codex
 - Last updated: 2026-05-15
 
@@ -62,3 +62,35 @@ gate.
 - 2026-05-15: Rewrote the site around the fractional product team positioning,
   removed the fake form and unused pseudo-resource sections, added the Worker
   email handoff route, and updated unit/e2e coverage.
+- 2026-05-15: Addressed xhigh UX and implementation review findings, including
+  focus visibility, reduced-motion scrolling, branded email fallback behavior,
+  trailing-slash contact routing, and keeping the production email alias out of
+  committed docs/tests/build output.
+
+## Outcome
+
+- Repositioned the site around fractional product team support with an editorial
+  operating-manual visual system.
+- Removed the fake contact form, generic resources, and unused CTA/case-study
+  sections.
+- Added `/contact-email` and `/contact-email/` Worker handoff routes driven by
+  `CONTACT_EMAIL`.
+- Updated tests for the new content, mobile navigation hiding, contact handoff,
+  Worker fallback, and trailing-slash routing.
+- Updated README environment and validation documentation.
+
+## Validation
+
+- `bun run check`: 0 errors, 0 warnings.
+- `bun run test -- --run`: 2 files passed, 8 tests passed.
+- `bun run test:e2e`: 80 tests passed.
+- `bun run build`: Vite app and Worker bundle passed.
+- `rg "contact@evergreenlabs\\.io" .`: no matches.
+- `rg "contact@evergreenlabs\\.io" dist`: no matches after build.
+- Manual viewport review: desktop, tablet, and mobile showed no horizontal
+  overflow or obvious overlap; mobile navigation is hidden when closed.
+
+## Review
+
+- xhigh UX review found seven issues; all were addressed.
+- xhigh implementation review found three issues; all were addressed.
