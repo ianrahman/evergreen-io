@@ -147,14 +147,6 @@
     line-height: 1.8;
   }
 
-  .role {
-    font-size: 0.9rem;
-    color: rgba(220, 235, 225, 0.6);
-    margin-top: 0.75rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));

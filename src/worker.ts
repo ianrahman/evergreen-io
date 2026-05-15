@@ -1,4 +1,4 @@
-import type { Fetcher } from "@cloudflare/workers-types";
+import type { ExportedHandler, Fetcher } from "@cloudflare/workers-types";
 
 export interface Env {
   ASSETS: Fetcher;
@@ -6,7 +6,9 @@ export interface Env {
 
 const SPA_FALLBACK_PATH = "/index.html";
 
-const shouldServeSpaFallback = (request: Request): boolean => {
+type WorkerRequest = Parameters<NonNullable<ExportedHandler<Env>["fetch"]>>[0];
+
+const shouldServeSpaFallback = (request: WorkerRequest): boolean => {
   if (request.method !== "GET" && request.method !== "HEAD") {
     return false;
   }
@@ -19,14 +21,20 @@ const shouldServeSpaFallback = (request: Request): boolean => {
   return !pathname.includes(".");
 };
 
-export default {
-  async fetch(request: Request, env: Env): Promise<Response> {
+const worker = {
+  async fetch(request, env) {
     const response = await env.ASSETS.fetch(request);
     if (response.status !== 404 || !shouldServeSpaFallback(request)) {
       return response;
     }
 
+    // Preserve navigational request metadata while mapping SPA routes to the app shell.
     const fallbackUrl = new URL(SPA_FALLBACK_PATH, request.url);
-    return env.ASSETS.fetch(new Request(fallbackUrl.toString(), request));
+    return env.ASSETS.fetch(fallbackUrl, {
+      headers: request.headers,
+      method: request.method,
+    });
   },
-};
+} satisfies ExportedHandler<Env>;
+
+export default worker;

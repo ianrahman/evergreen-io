@@ -183,17 +183,6 @@
     box-shadow: 0 14px 28px rgba(63, 125, 74, 0.4);
   }
 
-  .hero-button.ghost {
-    border: 1px solid rgba(255, 255, 255, 0.55);
-    color: white;
-    background: rgba(255, 255, 255, 0.08);
-  }
-
-  .hero-button.ghost:hover {
-    transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.15);
-  }
-
   .hero-button:focus-visible {
     outline: 3px solid rgba(198, 240, 206, 0.9);
     outline-offset: 3px;

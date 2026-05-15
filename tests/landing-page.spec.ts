@@ -1,155 +1,126 @@
-import { test, expect } from '@playwright/test';
+import { expect, type Page, test } from '@playwright/test';
+
+const navLabels = ['Welcome', 'Services', 'Resources', 'Contact'];
+
+const openMobileMenuIfNeeded = async (page: Page) => {
+  const toggle = page.getByRole('button', { name: 'Toggle navigation' });
+  if ((await toggle.isVisible()) && (await toggle.getAttribute('aria-expanded')) !== 'true') {
+    await toggle.click();
+  }
+};
 
 test.describe('Evergreen Labs Landing Page', () => {
-  test('should load the homepage successfully', async ({ page }) => {
+  test('loads the homepage successfully', async ({ page }) => {
     await page.goto('/');
 
-    // Check that the page loads without errors
     await expect(page).toHaveTitle(/Evergreen Labs/i);
-
-    // Verify the main heading is visible
-    await expect(page.locator('h1')).toContainText('EVERGREEN LABS');
-
-    // Check that the tagline is present
-    await expect(page.getByText('Fresh code for the long run')).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Evergreen Labs' })).toBeVisible();
+    await expect(
+      page.getByText('Designing resilient products that grow with your business.'),
+    ).toBeVisible();
   });
 
-  test('should have working navigation header', async ({ page }) => {
+  test('exposes the current navigation header', async ({ page }) => {
     await page.goto('/');
 
-    // Check header is visible and fixed
     const header = page.locator('header');
     await expect(header).toBeVisible();
+    await expect(header.getByRole('img', { name: 'Evergreen Labs logo' })).toBeVisible();
+    await expect(header.getByText('EVERGREEN LABS', { exact: true })).toBeVisible();
 
-    // Verify logo is present
-    await expect(header.locator('svg')).toBeVisible();
-    await expect(header.getByText('EVERGREEN LABS')).toBeVisible();
-
-    // Check navigation links
-    await expect(header.getByRole('link', { name: 'WELCOME' })).toBeVisible();
-    await expect(header.getByRole('link', { name: 'GET IN TOUCH' })).toBeVisible();
-    await expect(header.getByRole('link', { name: 'BLOG' })).toBeVisible();
-    await expect(header.getByRole('link', { name: 'RESOURCES' })).toBeVisible();
+    await openMobileMenuIfNeeded(page);
+    for (const label of navLabels) {
+      await expect(header.getByRole('link', { name: label })).toBeVisible();
+    }
   });
 
-  test('should display all main sections', async ({ page }) => {
+  test('displays the main sections', async ({ page }) => {
     await page.goto('/');
 
-    // Hero section
     await expect(page.locator('#welcome')).toBeVisible();
-    await expect(page.getByText('EVERGREEN LABS')).toBeVisible();
-    await expect(page.getByText('Fresh code for the long run')).toBeVisible();
-
-    // Services section
-    await expect(page.getByText('WE MAKE MOBILE APPS AND WEBSITES')).toBeVisible();
-
-    // About section
-    await expect(page.getByText('ABOUT US')).toBeVisible();
-    await expect(page.getByText('WHO WE ARE')).toBeVisible();
-    await expect(page.getByText('WHAT WE STAND FOR')).toBeVisible();
-
-    // CTA section
-    await expect(page.getByText('LET\'S MAKE SOMETHING AWESOME')).toBeVisible();
-
-    // Contact section
-    await expect(page.getByText('HOW CAN WE HELP?')).toBeVisible();
-    await expect(page.getByRole('link', { name: 'GET IN TOUCH' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Evergreen Labs' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Sustainable products from idea to launch' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Building for the long run' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Keep momentum between releases' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Let’s launch the next durable release together' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Tell us about your next release' })).toBeVisible();
   });
 
-  test('should have working scroll animations', async ({ page }) => {
+  test('shows hero motion affordances', async ({ page }) => {
     await page.goto('/');
 
-    // Check that scroll indicator is visible in hero section
-    const scrollIndicator = page.locator('.scroll-indicator');
-    await expect(scrollIndicator).toBeVisible();
-
-    // Check scroll prompt section
-    await expect(page.getByText('SCROLL DOWN')).toBeVisible();
+    await expect(page.locator('.hero-content')).toBeVisible();
+    await expect(page.locator('.hero-logo')).toBeVisible();
+    await expect(page.locator('.scroll-indicator')).toBeVisible();
   });
 
-  test('should have responsive design', async ({ page }) => {
+  test('keeps primary content visible across viewport sizes', async ({ page }) => {
     await page.goto('/');
 
-    // Test desktop view
     await page.setViewportSize({ width: 1200, height: 800 });
-    await expect(page.locator('h1')).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Evergreen Labs' })).toBeVisible();
 
-    // Test mobile view
     await page.setViewportSize({ width: 375, height: 667 });
-    await expect(page.locator('h1')).toBeVisible();
-    await expect(page.getByText('EVERGREEN LABS')).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Evergreen Labs' })).toBeVisible();
+    await expect(page.locator('header')).toBeVisible();
   });
 
-  test('should have working contact links', async ({ page }) => {
+  test('has working contact entry points', async ({ page }) => {
     await page.goto('/');
 
-    // Scroll to contact section
     await page.locator('#contact').scrollIntoViewIfNeeded();
 
-    // Check email link
-    const emailLink = page.getByRole('link', { name: 'GET IN TOUCH' });
+    const emailLink = page.getByRole('link', { name: 'hello@evergreenlabs.io' });
     await expect(emailLink).toBeVisible();
     await expect(emailLink).toHaveAttribute('href', 'mailto:hello@evergreenlabs.io');
-
-    // Check social media links
-    await expect(page.getByRole('link', { name: 'Follow us on Facebook' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Follow us on Twitter' })).toBeVisible();
     await expect(page.getByRole('link', { name: 'Connect with us on LinkedIn' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Send message' })).toBeVisible();
   });
 
-  test('should have proper heading hierarchy', async ({ page }) => {
+  test('has proper heading hierarchy anchors', async ({ page }) => {
     await page.goto('/');
 
-    // Check main heading
-    await expect(page.locator('h1')).toContainText('EVERGREEN LABS');
-
-    // Check section headings
-    await expect(page.locator('h2').first()).toContainText('WE MAKE MOBILE APPS AND WEBSITES');
-    await expect(page.getByRole('heading', { name: 'ABOUT US' })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'LET\'S MAKE SOMETHING AWESOME' })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'HOW CAN WE HELP?' })).toBeVisible();
+    await expect(page.locator('h1')).toContainText('Evergreen Labs');
+    await expect(page.locator('h2').first()).toContainText('Sustainable products from idea to launch');
+    await expect(page.getByRole('heading', { name: 'Building for the long run' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Let’s launch the next durable release together' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Tell us about your next release' })).toBeVisible();
   });
 
-  test('should load without console errors', async ({ page }) => {
+  test('loads without console errors', async ({ page }) => {
     const consoleErrors: string[] = [];
 
-    page.on('console', msg => {
+    page.on('console', (msg) => {
       if (msg.type() === 'error') {
         consoleErrors.push(msg.text());
       }
     });
 
     await page.goto('/');
-
-    // Wait for page to fully load
     await page.waitForLoadState('networkidle');
 
-    // Check that there are no console errors
     expect(consoleErrors).toHaveLength(0);
   });
 
-  test('should have accessible content', async ({ page }) => {
+  test('has accessible images and social links', async ({ page }) => {
     await page.goto('/');
 
-    // Check that images have alt text or are decorative
     const images = page.locator('img');
     const imageCount = await images.count();
 
-    for (let i = 0; i < imageCount; i++) {
-      const img = images.nth(i);
-      const alt = await img.getAttribute('alt');
-      const role = await img.getAttribute('role');
+    for (let index = 0; index < imageCount; index += 1) {
+      const image = images.nth(index);
+      const alt = await image.getAttribute('alt');
+      const role = await image.getAttribute('role');
 
-      // Images should either have alt text or be marked as decorative
       expect(alt !== null || role === 'presentation').toBe(true);
     }
 
-    // Check that links have accessible names
     const socialLinks = page.locator('.social-link');
     const socialLinkCount = await socialLinks.count();
 
-    for (let i = 0; i < socialLinkCount; i++) {
-      const link = socialLinks.nth(i);
+    for (let index = 0; index < socialLinkCount; index += 1) {
+      const link = socialLinks.nth(index);
       const ariaLabel = await link.getAttribute('aria-label');
       expect(ariaLabel).toBeTruthy();
     }

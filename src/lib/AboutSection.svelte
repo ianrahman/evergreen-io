@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { inView } from './actions/inView';
+  import { inView } from "./actions/inView";
 </script>
 
 <section class="about" id="about">
@@ -7,10 +7,11 @@
   <div class="container">
     <div class="intro">
       <p class="eyebrow">About Evergreen Labs</p>
-      <h2 class="title">Bootcamp grads building for the long run</h2>
+      <h2 class="title">Building for the long run</h2>
       <p class="summary">
-        We bring the curiosity of fresh talent and the discipline of product teams who have shipped at scale.
-        Every engagement pairs discovery facilitation with thoughtful delivery so releases stay durable.
+        We bring the curiosity of fresh talent and the discipline of product
+        teams who have shipped at scale. Every engagement pairs discovery
+        facilitation with thoughtful delivery so releases stay durable.
       </p>
     </div>
 
@@ -18,8 +19,9 @@
       <article class="about-card" use:inView>
         <h3>Integrated partners</h3>
         <p>
-          We embed alongside your squad for fortnightly sprints, sharing rituals, backlog priorities, and
-          metrics so the hand-off is frictionless.
+          We embed alongside your squad for fortnightly sprints, sharing
+          rituals, backlog priorities, and metrics so the hand-off is
+          frictionless.
         </p>
         <ul>
           <li>Weekly demos with real metrics</li>
@@ -31,8 +33,9 @@
       <article class="about-card" use:inView>
         <h3>Principled delivery</h3>
         <p>
-          Accessibility, performance, and maintainability are part of definition-of-done. We build observability
-          in from day one so teams catch regressions early.
+          Accessibility, performance, and maintainability are part of
+          definition-of-done. We build observability in from day one so teams
+          catch regressions early.
         </p>
         <ul>
           <li>Svelte + TypeScript-first stack</li>
@@ -47,8 +50,16 @@
 <style>
   .about {
     position: relative;
-    background: radial-gradient(circle at 15% 25%, rgba(53, 107, 76, 0.35), transparent 45%),
-      radial-gradient(circle at 85% 20%, rgba(20, 57, 35, 0.45), transparent 50%),
+    background: radial-gradient(
+        circle at 15% 25%,
+        rgba(53, 107, 76, 0.35),
+        transparent 45%
+      ),
+      radial-gradient(
+        circle at 85% 20%,
+        rgba(20, 57, 35, 0.45),
+        transparent 50%
+      ),
       #102218;
     padding: 6rem 0;
     color: white;
@@ -58,14 +69,23 @@
   .about-overlay {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.08), transparent 60%);
+    background: radial-gradient(
+      circle at 50% 50%,
+      rgba(255, 255, 255, 0.08),
+      transparent 60%
+    );
     pointer-events: none;
     animation: drift 26s ease-in-out infinite;
   }
 
   @keyframes drift {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
   }
 
   .container {
@@ -114,7 +134,10 @@
     padding: 2.75rem 2.25rem;
     border: 1px solid rgba(126, 196, 142, 0.2);
     box-shadow: 0 24px 48px rgba(5, 15, 10, 0.4);
-    transition: transform 0.3s ease, border 0.3s ease, opacity 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      border 0.3s ease,
+      opacity 0.3s ease;
     opacity: 0;
     transform: translateY(35px);
   }
@@ -159,7 +182,7 @@
   }
 
   .about-card li::before {
-    content: '';
+    content: "";
     width: 10px;
     height: 10px;
     border-radius: 50%;

@@ -1,32 +1,12 @@
-# Directory-scoped Codex policy for Git repositories under ~/dev.
-# GitHub tools are available automatically here, with connector calls approval-gated.
-[plugins."github@openai-curated"]
-enabled = true
-
 [apps.connector_76869538009648d5b282a4bb21c3d157]
-enabled = true
-default_tools_enabled = true
 default_tools_approval_mode = "approve"
+default_tools_enabled = true
+enabled = true
 
-[apps.connector_76869538009648d5b282a4bb21c3d157.tools.github_enable_auto_merge]
-approval_mode = "approve"
+command = "npx"
 
-[apps.connector_76869538009648d5b282a4bb21c3d157.tools.github_create_pull_request]
-approval_mode = "approve"
-
-[apps.connector_76869538009648d5b282a4bb21c3d157.tools.github_label_pr]
-approval_mode = "approve"
-
-[apps.connector_76869538009648d5b282a4bb21c3d157.tools.github_add_comment_to_issue]
-approval_mode = "approve"
-
-# Cloudflare API MCP is available only in Workers repos and execute is approval-gated.
 [plugins."cloudflare@openai-curated"]
 enabled = true
 
-[mcp_servers.cloudflare-api]
-url = "https://mcp.cloudflare.com/mcp"
+[plugins."github@openai-curated"]
 enabled = true
-
-[mcp_servers.cloudflare-api.tools.execute]
-approval_mode = "approve"

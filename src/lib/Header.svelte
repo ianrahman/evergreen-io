@@ -231,6 +231,7 @@
 
     .nav-menu {
       position: absolute;
+      z-index: 1;
       top: 100%;
       right: 1rem;
       width: calc(100% - 2rem);
