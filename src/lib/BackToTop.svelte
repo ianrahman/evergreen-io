@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { onMount } from "svelte";
 
   let isVisible = $state(false);
 
@@ -8,13 +8,13 @@
   };
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   onMount(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   });
 </script>
 
@@ -37,11 +37,11 @@
     height: 48px;
     border-radius: 50%;
     border: none;
-    background: rgba(15, 35, 23, 0.85);
-    color: white;
+    background: var(--color-ink);
+    color: var(--color-paper);
     font-size: 1.4rem;
     cursor: pointer;
-    box-shadow: 0 12px 24px rgba(15, 35, 23, 0.3);
+    box-shadow: 0 12px 24px rgba(33, 40, 32, 0.2);
     transition: transform 0.25s ease, opacity 0.25s ease, box-shadow 0.25s ease;
     opacity: 0;
     pointer-events: none;
@@ -57,11 +57,11 @@
 
   .back-to-top:hover {
     transform: translateY(-4px);
-    box-shadow: 0 18px 32px rgba(15, 35, 23, 0.4);
+    box-shadow: 0 18px 32px rgba(33, 40, 32, 0.24);
   }
 
   .back-to-top:focus-visible {
-    outline: 3px solid rgba(126, 196, 142, 0.85);
+    outline: 3px solid var(--color-focus);
     outline-offset: 3px;
   }
 

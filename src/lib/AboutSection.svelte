@@ -1,197 +1,112 @@
-<script lang="ts">
-  import { inView } from "./actions/inView";
-</script>
-
-<section class="about" id="about">
-  <div class="about-overlay"></div>
+<section class="principles" id="principles">
   <div class="container">
     <div class="intro">
-      <p class="eyebrow">About Evergreen Labs</p>
-      <h2 class="title">Building for the long run</h2>
+      <p class="eyebrow">Operating Principles</p>
+      <h2 class="title">How the work stays useful after launch.</h2>
       <p class="summary">
-        We bring the curiosity of fresh talent and the discipline of product
-        teams who have shipped at scale. Every engagement pairs discovery
-        facilitation with thoughtful delivery so releases stay durable.
+        The point is not to make a louder landing page or a bigger backlog. The
+        point is to leave your team with decisions, interfaces, and release
+        habits that can survive the next sprint.
       </p>
     </div>
 
-    <div class="about-grid">
-      <article class="about-card" use:inView>
-        <h3>Integrated partners</h3>
+    <div class="principle-grid">
+      <article class="principle">
+        <h3>Specific before expansive</h3>
         <p>
-          We embed alongside your squad for fortnightly sprints, sharing
-          rituals, backlog priorities, and metrics so the hand-off is
-          frictionless.
+          Every engagement starts by narrowing the problem, naming tradeoffs,
+          and deciding what does not need to exist yet.
         </p>
-        <ul>
-          <li>Weekly demos with real metrics</li>
-          <li>Design files and code in shared repos</li>
-          <li>Documentation shipped with every release</li>
-        </ul>
       </article>
 
-      <article class="about-card" use:inView>
-        <h3>Principled delivery</h3>
+      <article class="principle">
+        <h3>Readable systems over clever systems</h3>
         <p>
-          Accessibility, performance, and maintainability are part of
-          definition-of-done. We build observability in from day one so teams
-          catch regressions early.
+          Code, copy, and UI structure should be boring enough that the next
+          person can understand what changed and why.
         </p>
-        <ul>
-          <li>Svelte + TypeScript-first stack</li>
-          <li>Cloudflare-native deployment</li>
-          <li>Coverage and accessibility gates</li>
-        </ul>
+      </article>
+
+      <article class="principle">
+        <h3>Release quality is part of the work</h3>
+        <p>
+          Accessibility, performance, docs, and review are treated as delivery
+          requirements, not cleanup tasks for someone else.
+        </p>
       </article>
     </div>
   </div>
 </section>
 
 <style>
-  .about {
-    position: relative;
-    background: radial-gradient(
-        circle at 15% 25%,
-        rgba(53, 107, 76, 0.35),
-        transparent 45%
-      ),
-      radial-gradient(
-        circle at 85% 20%,
-        rgba(20, 57, 35, 0.45),
-        transparent 50%
-      ),
-      #102218;
-    padding: 6rem 0;
-    color: white;
-    overflow: hidden;
-  }
-
-  .about-overlay {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-      circle at 50% 50%,
-      rgba(255, 255, 255, 0.08),
-      transparent 60%
-    );
-    pointer-events: none;
-    animation: drift 26s ease-in-out infinite;
-  }
-
-  @keyframes drift {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-15px);
-    }
+  .principles {
+    background: var(--color-ink);
+    color: var(--color-paper);
+    padding: 6.5rem 0;
   }
 
   .container {
-    max-width: 1200px;
+    max-width: 1180px;
     margin: 0 auto;
     padding: 0 2rem;
-    position: relative;
   }
 
   .intro {
-    max-width: 720px;
-    margin: 0 auto 3.5rem;
-    text-align: center;
+    max-width: 860px;
+    margin-bottom: 4rem;
   }
 
   .eyebrow {
     text-transform: uppercase;
-    letter-spacing: 0.3em;
+    letter-spacing: 0.22em;
     font-size: 0.75rem;
     font-weight: 700;
-    color: rgba(198, 240, 206, 0.8);
+    color: var(--color-accent);
     margin-bottom: 1.5rem;
   }
 
   .title {
-    font-size: 2.9rem;
-    margin-bottom: 1.5rem;
-    letter-spacing: 0.04em;
+    font-size: clamp(2.2rem, 4vw, 4rem);
+    line-height: 1.05;
+    margin: 0 0 1.5rem;
+    letter-spacing: 0;
   }
 
   .summary {
-    font-size: 1.15rem;
-    line-height: 1.8;
-    color: rgba(230, 241, 233, 0.88);
-  }
-
-  .about-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2.5rem;
-  }
-
-  .about-card {
-    background: rgba(12, 26, 19, 0.75);
-    border-radius: 20px;
-    padding: 2.75rem 2.25rem;
-    border: 1px solid rgba(126, 196, 142, 0.2);
-    box-shadow: 0 24px 48px rgba(5, 15, 10, 0.4);
-    transition:
-      transform 0.3s ease,
-      border 0.3s ease,
-      opacity 0.3s ease;
-    opacity: 0;
-    transform: translateY(35px);
-  }
-
-  .about-card:global(.is-visible) {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .about-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(126, 196, 142, 0.4);
-  }
-
-  .about-card h3 {
-    font-size: 1.4rem;
-    margin-bottom: 1.25rem;
-    letter-spacing: 0.05em;
-  }
-
-  .about-card p {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    margin-bottom: 1.75rem;
-    color: rgba(230, 241, 233, 0.85);
-  }
-
-  .about-card ul {
-    list-style: none;
-    padding: 0;
+    max-width: 720px;
+    font-size: 1.12rem;
+    line-height: 1.65;
+    color: var(--color-paper-muted);
     margin: 0;
+  }
+
+  .principle-grid {
     display: grid;
-    gap: 0.65rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1px solid rgba(238, 241, 232, 0.28);
   }
 
-  .about-card li {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-size: 0.98rem;
-    color: rgba(198, 240, 206, 0.95);
+  .principle {
+    padding: 2rem 2rem 0 0;
+    border-top: 3px solid var(--color-accent);
   }
 
-  .about-card li::before {
-    content: "";
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #4fbd77;
-    box-shadow: 0 0 12px rgba(79, 189, 119, 0.6);
+  .principle h3 {
+    font-size: 1.4rem;
+    margin: 0 0 1rem;
+    letter-spacing: 0;
+    line-height: 1.25;
+  }
+
+  .principle p {
+    font-size: 1rem;
+    line-height: 1.65;
+    margin: 0;
+    color: var(--color-paper-muted);
   }
 
   @media (max-width: 768px) {
-    .about {
+    .principles {
       padding: 4.5rem 0;
     }
 
@@ -199,16 +114,9 @@
       padding: 0 1.25rem;
     }
 
-    .title {
-      font-size: 2.3rem;
-    }
-
-    .summary {
-      font-size: 1.05rem;
-    }
-
-    .about-card {
-      padding: 2.25rem 1.75rem;
+    .principle-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
     }
   }
 </style>

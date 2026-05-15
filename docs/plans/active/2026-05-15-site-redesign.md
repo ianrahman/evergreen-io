@@ -59,3 +59,6 @@ gate.
 ## Progress
 
 - 2026-05-15: Plan created from the approved redesign brief.
+- 2026-05-15: Rewrote the site around the fractional product team positioning,
+  removed the fake form and unused pseudo-resource sections, added the Worker
+  email handoff route, and updated unit/e2e coverage.

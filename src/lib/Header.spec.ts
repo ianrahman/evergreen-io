@@ -10,7 +10,7 @@ describe('Header', () => {
 
   it('exposes primary navigation links', () => {
     render(Header);
-    const items = ['Welcome', 'Services', 'Resources', 'Contact'];
+    const items = ['Welcome', 'Work Model', 'Principles', 'Contact'];
     items.forEach((label) => {
       expect(screen.getByRole('link', { name: label })).toBeTruthy();
     });

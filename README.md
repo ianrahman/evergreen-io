@@ -1,6 +1,7 @@
-# evergreen-io
+# Evergreen Labs Website
 
-A Svelte application built with TypeScript and Bun.
+Public Svelte site for Evergreen Labs, deployed through a Cloudflare Worker and
+static assets.
 
 ## Installation
 
@@ -18,6 +19,22 @@ To run the development server:
 bun run dev
 ```
 
+## Contact Email Gate
+
+The public site links to `/contact-email?subject=Project%20conversation` instead
+of embedding the contact email in the Svelte bundle. The Cloudflare Worker reads
+the destination from `CONTACT_EMAIL` and returns a noindex, no-store mailto
+handoff page.
+
+For local Cloudflare Worker testing, create an untracked `.dev.vars` file:
+
+```bash
+CONTACT_EMAIL=contact@evergreenlabs.io
+```
+
+For staging and production, configure `CONTACT_EMAIL` as a Cloudflare Worker
+environment variable. Do not commit `.dev.vars` or other local env files.
+
 ## Building
 
 To build for production:
@@ -26,12 +43,23 @@ To build for production:
 bun run build
 ```
 
+The build outputs static assets plus `dist/_worker.js`.
+
 ## Testing
 
 To run tests:
 
 ```bash
 bun test
+```
+
+The normal validation lanes are:
+
+```bash
+bun run check
+bun run test
+bun run test:e2e
+bun run build
 ```
 
 ## Project Structure

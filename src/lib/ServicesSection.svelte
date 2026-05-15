@@ -1,55 +1,40 @@
-<script lang="ts">
-  import { inView } from "./actions/inView";
-</script>
-
-<section class="services" id="services">
+<section class="work-model" id="work-model">
   <div class="container">
     <div class="intro">
-      <p class="eyebrow">What We Do</p>
-      <h2 class="title">Sustainable products from idea to launch</h2>
+      <p class="eyebrow">Work Model</p>
+      <h2 class="title">A small product team without the permanent overhead.</h2>
       <p class="summary">
-        We combine thoughtful strategy, elegant interfaces, and dependable
-        engineering so your teams can scale without rebuilding every quarter.
+        Evergreen Labs works best when there is real product momentum to protect:
+        enough ambiguity to shape, enough code to build, and enough responsibility
+        to keep the release maintainable.
       </p>
     </div>
 
-    <div class="service-grid">
-      <article class="service-card" use:inView>
-        <div class="icon">
-          <svg viewBox="0 0 32 32" aria-hidden="true">
-            <path d="M6 10h20M6 16h20M6 22h12" />
-          </svg>
-        </div>
-        <h3>Product Strategy</h3>
+    <div class="work-list">
+      <article class="work-item">
+        <span class="index">01</span>
+        <h3>Shape</h3>
         <p>
-          Workshop your roadmap, define KPIs, and ship a validated MVP in weeks,
-          not months.
+          Turn fuzzy requests into a release plan with crisp tradeoffs, named
+          risks, and the smallest useful path forward.
         </p>
       </article>
 
-      <article class="service-card" use:inView>
-        <div class="icon">
-          <svg viewBox="0 0 32 32" aria-hidden="true">
-            <path d="M9 25V11a7 7 0 0 1 14 0v14M7 25h18M12 15h8" />
-          </svg>
-        </div>
-        <h3>Interface &amp; Experience</h3>
+      <article class="work-item">
+        <span class="index">02</span>
+        <h3>Build</h3>
         <p>
-          Accessible Svelte interfaces, design systems, and motion that keeps
-          teams on-brand.
+          Design and implement product surfaces with enough documentation,
+          tests, and review discipline for your team to own them afterward.
         </p>
       </article>
 
-      <article class="service-card" use:inView>
-        <div class="icon">
-          <svg viewBox="0 0 32 32" aria-hidden="true">
-            <path d="M6 22 16 8l10 14M6 22h20M12 22l4-6 4 6" />
-          </svg>
-        </div>
-        <h3>Full-Stack Delivery</h3>
+      <article class="work-item">
+        <span class="index">03</span>
+        <h3>Stabilize</h3>
         <p>
-          TypeScript-first web and fully native mobile apps, ensuring resilient
-          performance.
+          Reduce fragile handoffs by tightening accessibility, performance,
+          observability, and release notes before the work leaves our hands.
         </p>
       </article>
     </div>
@@ -57,115 +42,84 @@
 </section>
 
 <style>
-  .services {
-    background: linear-gradient(180deg, #f7fbf7 0%, #eef5f0 100%);
-    padding: 6rem 0;
+  .work-model {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    padding: 6.5rem 0;
+    border-bottom: 1px solid var(--color-rule);
   }
 
   .container {
-    max-width: 1200px;
+    max-width: 1180px;
     margin: 0 auto;
     padding: 0 2rem;
   }
 
   .intro {
-    text-align: center;
-    max-width: 720px;
-    margin: 0 auto 3.5rem;
+    display: grid;
+    grid-template-columns: 0.7fr 1.3fr;
+    gap: 4rem;
+    margin-bottom: 4.5rem;
   }
 
   .eyebrow {
     text-transform: uppercase;
-    letter-spacing: 0.3em;
+    letter-spacing: 0.22em;
     font-size: 0.75rem;
     font-weight: 700;
-    color: #3f7d4a;
-    margin-bottom: 1.5rem;
+    color: var(--color-accent-strong);
   }
 
   .title {
-    font-size: 2.75rem;
-    color: #1f3324;
-    margin-bottom: 1.5rem;
-    letter-spacing: 0.02em;
-    line-height: 1.2;
+    font-size: clamp(2.2rem, 4vw, 4rem);
+    color: var(--color-ink);
+    letter-spacing: 0;
+    line-height: 1.05;
+    margin: 0;
   }
 
   .summary {
-    font-size: 1.1rem;
-    color: #3a443a;
-    line-height: 1.7;
+    grid-column: 2;
+    font-size: 1.12rem;
+    color: var(--color-muted);
+    line-height: 1.65;
+    margin: 0;
   }
 
-  .service-grid {
+  .work-list {
+    border-top: 1px solid var(--color-rule-strong);
+  }
+
+  .work-item {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: 96px 0.7fr 1.3fr;
     gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--color-rule);
   }
 
-  .service-card {
-    background: white;
-    border-radius: 16px;
-    padding: 2.5rem 2rem;
-    box-shadow: 0 20px 40px rgba(31, 51, 36, 0.08);
-    border: 1px solid rgba(63, 125, 74, 0.08);
-    transition:
-      transform 0.25s ease,
-      box-shadow 0.25s ease;
-    opacity: 0;
-    transform: translateY(30px);
+  .index {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-accent-strong);
   }
 
-  .service-card:global(.is-visible) {
-    opacity: 1;
-    transform: translateY(0);
+  .work-item h3 {
+    font-size: 1.6rem;
+    color: var(--color-ink);
+    margin: 0;
+    letter-spacing: 0;
   }
 
-  .service-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 24px 48px rgba(31, 51, 36, 0.12);
-  }
-
-  .service-card h3 {
-    font-size: 1.35rem;
-    color: #1f3324;
-    margin-bottom: 1rem;
-    letter-spacing: 0.01em;
-  }
-
-  .service-card p {
-    font-size: 1rem;
-    color: #445044;
+  .work-item p {
+    font-size: 1.05rem;
+    color: var(--color-muted);
     line-height: 1.6;
-  }
-
-  .icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 14px;
-    background: linear-gradient(
-      135deg,
-      rgba(63, 125, 74, 0.12),
-      rgba(31, 51, 36, 0.08)
-    );
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.75rem;
-  }
-
-  .icon svg {
-    width: 24px;
-    height: 24px;
-    stroke: #3f7d4a;
-    stroke-width: 2;
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+    margin: 0;
   }
 
   @media (max-width: 768px) {
-    .services {
+    .work-model {
       padding: 4.5rem 0;
     }
 
@@ -173,16 +127,20 @@
       padding: 0 1.25rem;
     }
 
-    .title {
-      font-size: 2.1rem;
+    .intro {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
     }
 
     .summary {
-      font-size: 1rem;
+      grid-column: auto;
     }
 
-    .service-card {
-      padding: 2rem 1.75rem;
+    .work-item {
+      grid-template-columns: 1fr;
+      gap: 0.8rem;
+      padding: 1.5rem 0;
     }
   }
 </style>

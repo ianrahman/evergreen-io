@@ -1,8 +1,11 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { onMount } from "svelte";
 
   let scrolled = $state(false);
   let menuOpen = $state(false);
+  let isMobile = $state(false);
+
+  const navigationHidden = $derived(isMobile && !menuOpen);
 
   const toggleMenu = () => {
     menuOpen = !menuOpen;
@@ -13,21 +16,31 @@
   };
 
   onMount(() => {
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
     const handleScroll = () => {
       scrolled = window.scrollY > 50;
     };
+    const handleMediaChange = () => {
+      isMobile = mediaQuery.matches;
+      if (!isMobile) {
+        menuOpen = false;
+      }
+    };
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
+      if (event.key === "Escape") {
         closeMenu();
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('keydown', handleKeyDown);
+    handleMediaChange();
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("keydown", handleKeyDown);
+    mediaQuery.addEventListener("change", handleMediaChange);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("keydown", handleKeyDown);
+      mediaQuery.removeEventListener("change", handleMediaChange);
     };
   });
 </script>
@@ -62,11 +75,13 @@
       id="primary-navigation"
       class="nav-menu"
       class:open={menuOpen}
+      hidden={navigationHidden}
+      inert={navigationHidden}
+      aria-hidden={navigationHidden ? "true" : undefined}
     >
       <a href="#welcome" onclick={closeMenu}>Welcome</a>
-      <a href="#services" onclick={closeMenu}>Services</a>
-      <!-- <a href="#work" onclick={closeMenu}>Work</a> -->
-      <a href="#resources" onclick={closeMenu}>Resources</a>
+      <a href="#work-model" onclick={closeMenu}>Work Model</a>
+      <a href="#principles" onclick={closeMenu}>Principles</a>
       <a href="#contact" onclick={closeMenu}>Contact</a>
     </nav>
   </div>
@@ -98,13 +113,13 @@
     right: 0;
     z-index: 1000;
     transition: all 0.3s ease;
-    background: rgba(26, 26, 26, 0.1);
-    backdrop-filter: blur(10px);
+    background: rgba(242, 241, 232, 0.94);
+    border-bottom: 1px solid rgba(42, 54, 42, 0.12);
+    backdrop-filter: blur(12px);
   }
 
   .header.scrolled {
-    background: rgba(26, 26, 26, 0.95);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    background: rgba(242, 241, 232, 0.98);
   }
 
   .nav-container {
@@ -134,7 +149,7 @@
     position: relative;
     width: 24px;
     height: 2px;
-    background: white;
+    background: var(--color-ink);
     display: inline-block;
     transition: transform 0.3s ease, background 0.3s ease;
   }
@@ -146,7 +161,7 @@
     left: 0;
     width: 24px;
     height: 2px;
-    background: white;
+    background: var(--color-ink);
     transition: transform 0.3s ease, opacity 0.3s ease;
   }
 
@@ -187,7 +202,7 @@
     font-size: 1.1rem;
     font-weight: 600;
     letter-spacing: 0.1em;
-    color: white;
+    color: var(--color-ink);
   }
 
   .nav-menu {
@@ -197,7 +212,7 @@
   }
 
   .nav-menu a {
-    color: white;
+    color: var(--color-ink);
     text-decoration: none;
     font-size: 0.95rem;
     font-weight: 500;
@@ -208,7 +223,7 @@
   }
 
   .nav-menu a:hover {
-    color: #7A9B6D;
+    color: var(--color-accent-strong);
   }
 
   .nav-menu a:focus-visible {
@@ -236,9 +251,9 @@
       right: 1rem;
       width: calc(100% - 2rem);
       max-width: 320px;
-      background: rgba(26, 26, 26, 0.98);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
+      background: var(--color-paper);
+      border: 1px solid rgba(42, 54, 42, 0.12);
+      border-radius: 2px;
       padding: 1.25rem;
       flex-direction: column;
       align-items: flex-start;
@@ -260,7 +275,7 @@
       width: 100%;
       padding: 0.6rem 0.85rem;
       border-radius: 8px;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(71, 98, 68, 0.08);
     }
   }
 
