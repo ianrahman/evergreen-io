@@ -10,7 +10,7 @@ const createEnv = (response = new Response("not found", { status: 404 })): Env =
   ASSETS: {
     fetch: vi.fn().mockResolvedValue(response),
   } as unknown as Env["ASSETS"],
-  CONTACT_EMAIL: "contact@evergreenlabs.io",
+  CONTACT_EMAIL: "contact@example.invalid",
 });
 
 describe("worker", () => {
@@ -26,8 +26,23 @@ describe("worker", () => {
     expect(response.status).toBe(200);
     expect(response.headers.get("Cache-Control")).toBe("no-store");
     expect(response.headers.get("X-Robots-Tag")).toBe("noindex, nofollow");
-    expect(body).toContain("mailto:contact@evergreenlabs.io?subject=Project%20conversation");
+    expect(body).toContain("mailto:contact@example.invalid?subject=Project%20conversation");
     expect(body).toContain("<meta name=\"robots\" content=\"noindex, nofollow\">");
+    expect(body).toContain("Back to Evergreen Labs");
+    expect(env.ASSETS.fetch).not.toHaveBeenCalled();
+  });
+
+  it("serves the contact email handoff for trailing slash requests", async () => {
+    const env = createEnv();
+    const response = await worker.fetch(
+      createRequest("https://evergreenlabs.io/contact-email/"),
+      env,
+    );
+
+    const body = await response.text();
+
+    expect(response.status).toBe(200);
+    expect(body).toContain("mailto:contact@example.invalid?subject=Project%20conversation");
     expect(env.ASSETS.fetch).not.toHaveBeenCalled();
   });
 

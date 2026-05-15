@@ -35,6 +35,9 @@ const shouldServeSpaFallback = (request: WorkerRequest): boolean => {
   return !pathname.includes(".");
 };
 
+const isContactEmailPath = (pathname: string): boolean =>
+  pathname === CONTACT_EMAIL_PATH || pathname === `${CONTACT_EMAIL_PATH}/`;
+
 const escapeHtml = (value: string): string =>
   value
     .replaceAll("&", "&amp;")
@@ -73,13 +76,56 @@ const createContactEmailResponse = (
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Email Evergreen Labs</title>
+    <style>
+      :root {
+        color: #1f271f;
+        background: #f2f1e8;
+        font-family: ui-sans-serif, "Avenir Next", "Segoe UI", system-ui, -apple-system, sans-serif;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+      }
+      main {
+        width: min(34rem, calc(100% - 2rem));
+        border-top: 1px solid rgba(42, 54, 42, 0.42);
+        padding-top: 2rem;
+      }
+      h1 {
+        font-family: Georgia, "Iowan Old Style", "Times New Roman", Times, serif;
+        font-size: clamp(2.5rem, 8vw, 4.5rem);
+        line-height: 0.98;
+        margin: 0 0 1.5rem;
+      }
+      p {
+        color: #5f675e;
+        font-size: 1.05rem;
+        line-height: 1.6;
+      }
+      a {
+        color: #1f271f;
+        font-weight: 700;
+        text-underline-offset: 0.18em;
+      }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+    </style>
     <script>window.location.href = ${JSON.stringify(mailto)};</script>
   </head>
   <body>
     <main>
       <h1>Email Evergreen Labs</h1>
       <p>Your email app should open automatically.</p>
-      <p><a href="${escapedMailto}">Open an email to ${escapedEmail}</a></p>
+      <div class="actions">
+        <a href="${escapedMailto}">Open an email to ${escapedEmail}</a>
+        <a href="/">Back to Evergreen Labs</a>
+      </div>
     </main>
   </body>
 </html>`,
@@ -92,7 +138,7 @@ const createContactEmailResponse = (
 const worker = {
   async fetch(request, env): Promise<WorkerResponse> {
     const { pathname } = new URL(request.url);
-    if (pathname === CONTACT_EMAIL_PATH) {
+    if (isContactEmailPath(pathname)) {
       if (request.method !== "GET") {
         return createWorkerResponse("Method not allowed", {
           status: 405,

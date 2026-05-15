@@ -20,8 +20,8 @@ gate.
   agency or a narrow Svelte/Cloudflare specialist.
 - Minimal proof is the right scope for this pass: no invented case studies,
   fake resources, client logos, or unsupported metrics.
-- `CONTACT_EMAIL` will be configured outside source control as
-  `contact@evergreenlabs.io`.
+- `CONTACT_EMAIL` will be configured outside source control with the production
+  intake alias.
 - The email gate reduces passive scraping but does not eliminate spam risk.
 
 ## Non-Goals

@@ -29,7 +29,7 @@ handoff page.
 For local Cloudflare Worker testing, create an untracked `.dev.vars` file:
 
 ```bash
-CONTACT_EMAIL=contact@evergreenlabs.io
+CONTACT_EMAIL=contact@example.invalid
 ```
 
 For staging and production, configure `CONTACT_EMAIL` as a Cloudflare Worker
@@ -50,7 +50,7 @@ The build outputs static assets plus `dist/_worker.js`.
 To run tests:
 
 ```bash
-bun test
+bun run test
 ```
 
 The normal validation lanes are:
